@@ -36,9 +36,20 @@ class Sensor : public Device {
         virtual double getMeasure()=0;
         String getVariable();
 };
-
 String Sensor::getVariable(){
     return this->variable;
+};
+
+class HMI : public Device {
+    protected:
+        String variable_1;
+        String variable_2;
+        double measure_1;
+        double measure_2;
+    public:
+        HMI(uint8_t id, String reference): Device(id, reference){
+        };
+        virtual void showVariables(String variable_1, double measure_1, String variable_2, double measure_2)=0;
 };
 
 #endif

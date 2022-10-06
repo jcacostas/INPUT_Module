@@ -50,6 +50,7 @@ class HMI : public Device {
         HMI(uint8_t id, String reference): Device(id, reference){
         };
         virtual void showVariables(String variable_1, double measure_1, String variable_2, double measure_2)=0;
+        virtual void showVibrationsAlert()=0;
 };
 
 #endif

@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "PlatformIO",
+			"task": "Test (megaatmega2560)",
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "test",
+			"label": "PlatformIO: Test (megaatmega2560)"
+		}
+	]
+}

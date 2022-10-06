@@ -14,7 +14,7 @@ class LCD_16x2: public LiquidCrystal_I2C, public HMI {
         LCD_16x2(uint8_t id, String reference, uint8_t lcd_Addr, uint8_t lcd_cols, uint8_t lcd_rows): 
         LiquidCrystal_I2C(lcd_Addr, lcd_cols, lcd_rows), HMI(id, reference){};
         void showVariables(String variable_1, double measure_1, String variable_2, double measure_2);   
-        void showAlert();
+        void showVibrationsAlert();
 };
 
 void LCD_16x2::showVariables(String variable_1, double measure_1, String variable_2, double measure_2){
@@ -29,7 +29,7 @@ void LCD_16x2::showVariables(String variable_1, double measure_1, String variabl
     this->print(measure_2);
 }
 
-void LCD_16x2::showAlert(){
+void LCD_16x2::showVibrationsAlert(){
     this->clear();
     this->setCursor(0,0);
     this->print("    Alert !!!   ");

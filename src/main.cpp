@@ -13,10 +13,8 @@ pressureSensor pressure_sensor = pressureSensor(2, "Potentiometer", var2);
 vibrationsSensor vibrations_sensor = vibrationsSensor(3, "Potentiometer", var3);
 LCD_16x2 LCD_screen = LCD_16x2(4, "Screen", 0x27, 16, 2);
 
+double tresholdVibrations=8;
 unsigned long temp=millis();
-double Temperature=0;
-double Pressure=0;
-double Vibrations=0;
 
 void setup()
 {
@@ -32,19 +30,9 @@ void loop()
 {
     if ((millis()-temp)>=2500)
     {
-        if (vibrations_sensor.getMeasure()>8){
-            LCD_screen.showAlert();
+        if (vibrations_sensor.alertDetection(tresholdVibrations)){
+            LCD_screen.showVibrationsAlert();
         } else {
-            Serial.println(" ");    
-            Serial.print(var1);
-            Serial.print(temperature_sensor.getMeasure()); // Temperature in Celcius
-            Serial.println(" Celcius");
-            Serial.print(var2);
-            Serial.print(pressure_sensor.getMeasure()); // Pressure in Pa
-            Serial.println("Pa");
-            Serial.print(var3);
-            Serial.print(vibrations_sensor.getMeasure()); // Vibrations intensity in m/s2
-            Serial.println("m/s2");
             LCD_screen.showVariables(var1, temperature_sensor.getMeasure(), var2, pressure_sensor.getMeasure());
         }
     temp=millis();

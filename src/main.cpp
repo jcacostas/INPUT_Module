@@ -8,10 +8,10 @@ String var1="Temperature";
 String var2="Pressure";
 String var3="Vibrations";
 
-BMP180 temperature_sensor = BMP180(1, "BMP180", var1);
-pressureSensor pressure_sensor = pressureSensor(2, "Potentiometer", var2);
-vibrationsSensor vibrations_sensor = vibrationsSensor(3, "Potentiometer", var3);
-LCD_16x2 LCD_screen = LCD_16x2(4, "Screen", 0x27, 16, 2);
+BMP180 temperature_sensor = BMP180(0X01, "BMP180", var1);
+pressureSensor pressure_sensor = pressureSensor(0X02, "Potentiometer", var2);
+vibrationsSensor vibrations_sensor = vibrationsSensor(0X03, "Potentiometer", var3);
+LCD_16x2 LCD_screen = LCD_16x2(0X04, "Screen", 0x27, 16, 2);
 
 double tresholdVibrations=8;
 unsigned long temp=millis();

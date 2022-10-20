@@ -31,29 +31,26 @@ void loop()
 {
     if ((millis()-temp)>=2500)
     {
-        if (vibrations_sensor.alertDetection(tresholdVibrations)){
+        if (vibrations_sensor.alertDetection(tresholdVibrations))
+        {
             LCD_screen.showVibrationsAlert();
         } else {
             LCD_screen.showVariables(var1, temperature_sensor.getMeasure(), var2, pressure_sensor.getMeasure());
-
-            if (/Serial.available()/digitalRead(pinstart) and ok){
-                DataPack payload;
-                payload.addData(
-                    temperature_sensor.getId(), 
-                    50
-                    /uint16_t(temperature_sensor.getMeasure())/
-                );
-                payload.addData(
-                    pressure_sensor.getId(), 
-                    60
-                    /uint16_t(pressure_sensor.getMeasure())/
-                );
-                payload.addData(
-                    vibrations_sensor.getId(),
-                    vibrations_sensor.alertDetection(tresholdVibrations)==1 ? 2^15 : 0,
-                );
-                payload.write(Serial);
+            DataPack payload;
+            payload.addData(
+                temperature_sensor.getId(), 
+                uint16_t(temperature_sensor.getMeasure())
+            );
+            payload.addData(
+                pressure_sensor.getId(), 
+                uint16_t(pressure_sensor.getMeasure())
+            );
+            payload.addData(
+                vibrations_sensor.getId(),
+                vibrations_sensor.alertDetection(tresholdVibrations)==1 ? 2^15 : 0
+            );
+            payload.write(Serial);
         }
-    temp=millis();
+        temp=millis();
     }
 }
